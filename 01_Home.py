@@ -127,6 +127,7 @@ def main():
     # Query form and response
     with st.form('my_form'):
         user_instructions = st.text_area('Hier die Anweisungen eingeben  und mit einer Erfahrung ergänzen:', value = 'Du bist ein Bewerbungs-Assistent und erstellst auf Basis der Stellenausschreibung ein Anschreiben.')
+        user_information = st.text_area('Schreib etwas über dich:', value = '- Ich habe 20 Jahre Berufserfahrung  \n - Ich heiße Max Mustermann \n - Der Ansprechpartner für die Stelle ist Maxim Mustermensch')
         user_input = st.text_area('Prompt:', value='Erstelle mir ein Anschreiben.')
         source = 'Uploaded documents'
 
@@ -160,7 +161,7 @@ def main():
                         prompt_mode,
                         source
                     )
-                    result = vector_db.get_response(user_instructions + " " + user_input)
+                    result = vector_db.get_response(user_instructions + " " + user_information + " " +  user_input)
                 except Exception as e:
                     logger.error('Exception during Querying', exc_info=True)
                     st.error('Error occured, unable to process response!', icon="🚨")
