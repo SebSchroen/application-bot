@@ -73,7 +73,7 @@ def main():
     with st.sidebar:
         # API option, whether to use host's API key (must be enabled by config), and also to cap usage
         openai_api_key = st.session_state.openai_api_key_host
-        
+        password = st.text_input(label = "Passwort", help = "Passwort hier eingeben.")
         # Document uploader
         uploaded_files = st.file_uploader(
             label = 'Dokumente hier hochladen', 
@@ -81,8 +81,8 @@ def main():
             type = ['pdf', 'txt', 'docx', 'srt'], 
             accept_multiple_files=True
             )
-      
-        if st.button('Hochladen', type='primary') and (uploaded_files):
+
+        if st.button('Hochladen', type='primary') and (uploaded_files) and password == st.secrets['password']:
             with st.status('Lade hoch (das kann einen Moment dauern)...)', expanded=True) as status:
                 try:
                     st.write("Dokumente werden verarbeitet...")
