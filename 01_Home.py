@@ -73,13 +73,13 @@ def main():
     with st.sidebar:
         # API option, whether to use host's API key (must be enabled by config), and also to cap usage
         openai_api_key = st.session_state.openai_api_key_host
-        password = st.text_input(label = "Passwort", help = "Passwort hier eingeben.")
+        password = st.text_input(label = "Passwort", help = "Passwort hier eingeben.", type= 'password')
         # Document uploader
         uploaded_files = st.file_uploader(
             label = 'Dokumente hier hochladen', 
             help = 'Bereits existierende Dokumente werden überschrieben',
-            type = ['pdf', 'txt', 'docx', 'srt'], 
-            accept_multiple_files=True
+            type = ['pdf', 'txt', 'docx'], 
+            accept_multiple_files=False
             )
 
         if st.button('Hochladen', type='primary') and (uploaded_files) and password == st.secrets['password']:
@@ -149,7 +149,7 @@ def main():
                 st.warning('Please enter your OpenAI API key!', icon='⚠')
 
         #----------------------------------------- Submit a prompt ----------------------------------#
-        if st.form_submit_button('Absenden', type='primary') and openai_api_key.startswith('sk-'):
+        if st.form_submit_button('Absenden', type='primary') and openai_api_key.startswith('sk-') and password == st.secrets['password']:
             with st.spinner('Lade...'):
                 try:
                     result = None
