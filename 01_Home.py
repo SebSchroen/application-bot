@@ -79,7 +79,7 @@ def main():
             label = 'Dokumente hier hochladen', 
             help = 'Bereits existierende Dokumente werden überschrieben',
             type = ['pdf', 'txt', 'docx'], 
-            accept_multiple_files=False
+            accept_multiple_files=True
             )
 
         if st.button('Hochladen', type='primary') and (uploaded_files) and password == st.secrets['password']:
@@ -127,7 +127,7 @@ def main():
     # Query form and response
     with st.form('my_form'):
         user_instructions = st.text_area('Hier die Anweisungen eingeben  und mit einer Erfahrung ergänzen:', value = 'Du bist ein Bewerbungs-Assistent und erstellst auf Basis der Stellenausschreibung ein Anschreiben.')
-        user_information = st.text_area('Schreib etwas über dich:', value = '- Ich habe 20 Jahre Berufserfahrung  \n - Ich heiße Max Mustermann \n - Der Ansprechpartner für die Stelle ist Maxim Mustermensch')
+        user_information = st.text_area('Schreib etwas über dich:', value = '- Ich habe 20 Jahre Berufserfahrung  \n - Ich heiße Max Mustermann \n - Der Ansprechpartner für die Stelle ist Maxim Mustermensch \n Mein Geschlecht ist männlich')
         user_input = st.text_area('Prompt:', value='Erstelle mir ein Anschreiben.')
         source = 'Uploaded documents'
 
